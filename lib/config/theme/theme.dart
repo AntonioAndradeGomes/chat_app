@@ -1,4 +1,4 @@
-import 'package:chat_app/config/colors.dart';
+import 'package:chat_app/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 var ligthTheme = ThemeData();
@@ -31,6 +31,18 @@ var darkTheme = ThemeData(
       color: dOnBackgroudColor,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 18,
+      color: dOnBackgroudColor,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 15,
+      color: dOnBackgroudColor,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
     ),
     labelLarge: TextStyle(
       fontSize: 15,
