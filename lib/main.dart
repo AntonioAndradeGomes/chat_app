@@ -1,5 +1,5 @@
 import 'package:chat_app/config/theme.dart';
-import 'package:chat_app/pages/splash/splash_page.dart';
+import 'package:chat_app/pages/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ligthTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: const SplashPage(),
+      home: const WelcomePage(),
     );
   }
 }
