@@ -9,7 +9,7 @@ var darkTheme = ThemeData(
     primary: dPrimaryColor,
     onPrimary: dOnBackgroudColor,
     background: dBackgroudColor,
-    onBackground: dOnContainerColor,
+    onBackground: dOnBackgroudColor,
     primaryContainer: dContainerColor,
     onPrimaryContainer: dOnContainerColor,
   ),
@@ -28,9 +28,27 @@ var darkTheme = ThemeData(
     ),
     headlineSmall: TextStyle(
       fontSize: 20,
-      color: dPrimaryColor,
+      color: dOnBackgroudColor,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 15,
+      color: dOnContainerColor,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 12,
+      color: dOnContainerColor,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 10,
+      color: dOnContainerColor,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w300,
     ),
   ),
 );
