@@ -1,6 +1,8 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/config/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 class WelcomeFooterButton extends StatelessWidget {
@@ -10,7 +12,7 @@ class WelcomeFooterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlideAction(
       onSubmit: () async {
-        print('submit');
+        Get.offAllNamed(Routes.login);
       },
       sliderButtonIcon: SizedBox(
         width: 25,
