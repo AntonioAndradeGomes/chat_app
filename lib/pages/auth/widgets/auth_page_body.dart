@@ -1,3 +1,5 @@
+import 'package:chat_app/pages/auth/widgets/login_form_widget.dart';
+import 'package:chat_app/pages/auth/widgets/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,10 +9,9 @@ class AuthPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxBool isLogin = false.obs;
+    RxBool isLogin = true.obs;
     return Container(
       padding: const EdgeInsets.all(20),
-      height: 400,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).colorScheme.primaryContainer,
@@ -96,6 +97,11 @@ class AuthPageBody extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+                Obx(
+                  () => isLogin.value
+                      ? const LoginFormWidget()
+                      : const SignupFormWidget(),
                 ),
               ],
             ),
