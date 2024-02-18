@@ -5,6 +5,10 @@ var ligthTheme = ThemeData();
 var darkTheme = ThemeData(
   brightness: Brightness.dark,
   useMaterial3: true,
+  appBarTheme: const AppBarTheme(
+    elevation: 0,
+    backgroundColor: dContainerColor,
+  ),
   colorScheme: const ColorScheme.dark(
     primary: dPrimaryColor,
     onPrimary: dOnBackgroudColor,
@@ -13,9 +17,13 @@ var darkTheme = ThemeData(
     primaryContainer: dContainerColor,
     onPrimaryContainer: dOnContainerColor,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  inputDecorationTheme: InputDecorationTheme(
     fillColor: dBackgroudColor,
     filled: true,
+    border: UnderlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(10),
+    ),
   ),
   textTheme: const TextTheme(
     headlineLarge: TextStyle(

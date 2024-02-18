@@ -1,3 +1,6 @@
 abstract class Routes {
+  static const welcome = '/welcome';
   static const login = '/login';
+  static const home = '/';
+  static const chat = '/chat';
 }
