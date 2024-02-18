@@ -1,0 +1,67 @@
+import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/pages/home/widgets/my_tab_bar_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    final tabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        title: Text(
+          'Contato chat',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(
+            AssetsImages.appIconSVG,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search_rounded,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.more_vert_rounded,
+            ),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(40),
+          child: MyTabBarWidget(
+            tabController: tabController,
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
+      ),
+      body: const Column(
+        children: [],
+      ),
+    );
+  }
+}
