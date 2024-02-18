@@ -1,6 +1,8 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/config/routes/routes.dart';
 import 'package:chat_app/pages/home/widgets/chat_tile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatListWidget extends StatelessWidget {
   const ChatListWidget({super.key});
@@ -11,11 +13,18 @@ class ChatListWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       itemCount: 2,
       itemBuilder: (_, index) {
-        return ChatTileWidget(
-          imageUrl: AssetsImages.girlPic,
-          lastChat: 'Quero te bater!',
-          lastTime: '09:10 PM',
-          name: 'Ellen Camille $index',
+        return InkWell(
+          onTap: () {
+            Get.toNamed(
+              Routes.chat,
+            );
+          },
+          child: ChatTileWidget(
+            imageUrl: AssetsImages.girlPic,
+            lastChat: 'Quero te bater!',
+            lastTime: '09:10 PM',
+            name: 'Ellen Camille $index',
+          ),
         );
       },
       separatorBuilder: (_, index) {

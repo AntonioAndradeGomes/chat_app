@@ -8,4 +8,9 @@ abstract class AssetsImages {
 
   static const boyPic = '${imagesPath}boy_pic.png';
   static const girlPic = '${imagesPath}girl_pic.png';
+
+  static const send = '${iconsPath}send.svg';
+  static const mic = '${iconsPath}mic.svg';
+  static const gallery = '${iconsPath}gallery.svg';
+  static const chatStatus = '${iconsPath}chatStatus.svg';
 }

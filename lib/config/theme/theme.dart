@@ -5,6 +5,10 @@ var ligthTheme = ThemeData();
 var darkTheme = ThemeData(
   brightness: Brightness.dark,
   useMaterial3: true,
+  appBarTheme: const AppBarTheme(
+    elevation: 0,
+    backgroundColor: dContainerColor,
+  ),
   colorScheme: const ColorScheme.dark(
     primary: dPrimaryColor,
     onPrimary: dOnBackgroudColor,

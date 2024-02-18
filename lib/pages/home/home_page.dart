@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           title: Text(
             'Contato chat',
             style: Theme.of(context).textTheme.headlineSmall,
