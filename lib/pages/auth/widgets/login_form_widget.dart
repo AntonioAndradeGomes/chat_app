@@ -1,17 +1,19 @@
+import 'package:chat_app/config/routes/routes.dart';
 import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
-        TextField(
+        const TextField(
           decoration: InputDecoration(
             hintText: 'Email',
             prefixIcon: Icon(
@@ -19,10 +21,10 @@ class LoginFormWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        TextField(
+        const TextField(
           decoration: InputDecoration(
             hintText: 'Senha',
             prefixIcon: Icon(
@@ -30,13 +32,18 @@ class LoginFormWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             PrimaryButton(
+              onTap: () {
+                Get.offAllNamed(
+                  Routes.home,
+                );
+              },
               btnName: 'Login',
               icon: Icons.lock_open_outlined,
             ),
