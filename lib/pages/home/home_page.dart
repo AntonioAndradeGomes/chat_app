@@ -1,4 +1,5 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/pages/home/widgets/chat_list_widget.dart';
 import 'package:chat_app/pages/home/widgets/my_tab_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,50 +19,66 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       vsync: this,
     );
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        title: Text(
-          'Contato chat',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SvgPicture.asset(
-            AssetsImages.appIconSVG,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          title: Text(
+            'Contato chat',
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search_rounded,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SvgPicture.asset(
+              AssetsImages.appIconSVG,
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_rounded,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search_rounded,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.more_vert_rounded,
+              ),
+            ),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(40),
+            child: MyTabBarWidget(
+              tabController: tabController,
             ),
           ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(40),
-          child: MyTabBarWidget(
-            tabController: tabController,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          child: Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: Icon(
-          Icons.add,
-          color: Theme.of(context).colorScheme.onBackground,
-        ),
-      ),
-      body: const Column(
-        children: [],
-      ),
-    );
+        body: TabBarView(
+          controller: tabController,
+          children: [
+            const ChatListWidget(),
+            ListView(
+              children: const [
+                ListTile(
+                  title: Text('Name teste'),
+                ),
+              ],
+            ),
+            ListView(
+              children: const [
+                ListTile(
+                  title: Text('Name teste'),
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
