@@ -1,20 +1,25 @@
 import 'dart:developer';
 
+import 'package:chat_app/config/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   final firebaseAuth = FirebaseAuth.instance;
+  RxBool isLoading = false.obs;
 
   Future<void> login(
     String email,
     String password,
   ) async {
+    isLoading.value = true;
+
     try {
       await firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      Get.offAllNamed(Routes.home);
     } on FirebaseAuthException catch (e, s) {
       if (e.code == 'user-not-found') {
         log(
@@ -46,9 +51,14 @@ class AuthController extends GetxController {
         time: DateTime.now(),
       );
     }
+    isLoading.value = false;
   }
 
-  Future<void> createUser(String email, String password) async {
+  Future<void> createUser(
+    String email,
+    String password,
+  ) async {
+    isLoading.value = true;
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -85,5 +95,6 @@ class AuthController extends GetxController {
         time: DateTime.now(),
       );
     }
+    isLoading.value = false;
   }
 }

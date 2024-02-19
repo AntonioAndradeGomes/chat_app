@@ -1,4 +1,4 @@
-import 'package:chat_app/config/routes/routes.dart';
+import 'package:chat_app/controllers/auth_controller.dart';
 import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +10,7 @@ class LoginFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final emailEC = TextEditingController();
     final passwordEC = TextEditingController();
+    final controller = Get.put(AuthController());
     return Column(
       children: [
         const SizedBox(
@@ -29,6 +30,7 @@ class LoginFormWidget extends StatelessWidget {
         ),
         TextField(
           controller: passwordEC,
+          obscureText: true,
           decoration: const InputDecoration(
             hintText: 'Senha',
             prefixIcon: Icon(
@@ -42,14 +44,19 @@ class LoginFormWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PrimaryButton(
-              onTap: () {
-                Get.offAllNamed(
-                  Routes.home,
-                );
-              },
-              btnName: 'Login',
-              icon: Icons.lock_open_outlined,
+            Obx(
+              () => controller.isLoading.value
+                  ? const CircularProgressIndicator.adaptive()
+                  : PrimaryButton(
+                      onTap: () {
+                        controller.login(
+                          emailEC.text.trim(),
+                          passwordEC.text,
+                        );
+                      },
+                      btnName: 'Login',
+                      icon: Icons.lock_open_outlined,
+                    ),
             ),
           ],
         ),
