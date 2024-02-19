@@ -8,13 +8,16 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emailEC = TextEditingController();
+    final passwordEC = TextEditingController();
     return Column(
       children: [
         const SizedBox(
           height: 40,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: emailEC,
+          decoration: const InputDecoration(
             hintText: 'Email',
             prefixIcon: Icon(
               Icons.alternate_email_rounded,
@@ -24,8 +27,9 @@ class LoginFormWidget extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: passwordEC,
+          decoration: const InputDecoration(
             hintText: 'Senha',
             prefixIcon: Icon(
               Icons.password_outlined,
