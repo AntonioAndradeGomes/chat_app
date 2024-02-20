@@ -13,4 +13,5 @@ abstract class AssetsImages {
   static const mic = '${iconsPath}mic.svg';
   static const gallery = '${iconsPath}gallery.svg';
   static const chatStatus = '${iconsPath}chatStatus.svg';
+  static const videoSVG = '${iconsPath}video.svg';
 }

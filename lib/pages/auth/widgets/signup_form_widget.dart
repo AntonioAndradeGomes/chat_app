@@ -1,18 +1,25 @@
+import 'package:chat_app/controllers/auth_controller.dart';
 import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupFormWidget extends StatelessWidget {
   const SignupFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final fullNameEC = TextEditingController();
+    final emailEC = TextEditingController();
+    final passwordEC = TextEditingController();
+    final controller = Get.put(AuthController());
     return Column(
       children: [
         const SizedBox(
           height: 40,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: fullNameEC,
+          decoration: const InputDecoration(
             hintText: 'Nome Completo',
             prefixIcon: Icon(
               Icons.person,
@@ -22,8 +29,9 @@ class SignupFormWidget extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: emailEC,
+          decoration: const InputDecoration(
             hintText: 'Email',
             prefixIcon: Icon(
               Icons.alternate_email_rounded,
@@ -33,8 +41,10 @@ class SignupFormWidget extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: passwordEC,
+          obscureText: true,
+          decoration: const InputDecoration(
             hintText: 'Senha',
             prefixIcon: Icon(
               Icons.password_outlined,
@@ -47,10 +57,19 @@ class SignupFormWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PrimaryButton(
-              onTap: () {},
-              btnName: 'Cadastrar',
-              icon: Icons.lock_open_outlined,
+            Obx(
+              () => controller.isLoading.value
+                  ? const CircularProgressIndicator.adaptive()
+                  : PrimaryButton(
+                      onTap: () {
+                        controller.createUser(
+                          emailEC.text.trim(),
+                          passwordEC.text,
+                        );
+                      },
+                      btnName: 'Cadastrar',
+                      icon: Icons.lock_open_outlined,
+                    ),
             ),
           ],
         ),
