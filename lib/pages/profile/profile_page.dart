@@ -11,6 +11,14 @@ class ProfilePage extends StatelessWidget {
         title: const Text(
           'Perfil',
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.edit_rounded,
+            ),
+          ),
+        ],
       ),
       body: const Padding(
         padding: EdgeInsets.all(10),
