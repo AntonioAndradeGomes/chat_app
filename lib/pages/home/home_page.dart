@@ -1,8 +1,10 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/config/routes/routes.dart';
 import 'package:chat_app/pages/home/widgets/chat_list_widget.dart';
 import 'package:chat_app/pages/home/widgets/my_tab_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,7 +40,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(
+                  Routes.profile,
+                );
+              },
               icon: const Icon(
                 Icons.more_vert_rounded,
               ),
