@@ -3,6 +3,7 @@ import 'package:chat_app/pages/auth/auth_page.dart';
 import 'package:chat_app/pages/chat/chat_page.dart';
 import 'package:chat_app/pages/home/home_page.dart';
 import 'package:chat_app/pages/profile/profile_page.dart';
+import 'package:chat_app/pages/profile/update_profile_page.dart';
 import 'package:chat_app/pages/splash/splash_page.dart';
 import 'package:chat_app/pages/welcome/welcome_page.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,11 @@ abstract class AppPages {
     GetPage(
       name: Routes.profile,
       page: () => const ProfilePage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: Routes.updateProfile,
+      page: () => const UpdateProfilePage(),
       transition: Transition.rightToLeft,
     ),
   ];
