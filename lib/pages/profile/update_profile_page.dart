@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class UpdateProfilePage extends StatelessWidget {
@@ -68,7 +69,9 @@ class UpdateProfilePage extends StatelessWidget {
                             height: 10,
                           ),
                           TextField(
+                            textInputAction: TextInputAction.next,
                             decoration: const InputDecoration(
+                              hintText: 'Antonio Andrade',
                               prefixIcon: Icon(
                                 Icons.person_rounded,
                               ),
@@ -90,11 +93,48 @@ class UpdateProfilePage extends StatelessWidget {
                             height: 10,
                           ),
                           TextField(
+                            textInputAction: TextInputAction.next,
                             decoration: const InputDecoration(
+                              hintText: 'example@gmail.com',
                               prefixIcon: Icon(
-                                Icons.email_rounded,
+                                Icons.alternate_email_rounded,
                               ),
                             ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Número de telefone',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.start,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            decoration: const InputDecoration(
+                              hintText: '+5582999999999',
+                              prefixIcon: Icon(
+                                Icons.alternate_email_rounded,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              PrimaryButton(
+                                btnName: 'Salvar',
+                                icon: Icons.save,
+                                onTap: () {},
+                              ),
+                            ],
                           ),
                         ],
                       ),

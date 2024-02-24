@@ -1,12 +1,15 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.put(ProfileController());
     //TODO: ajustar colocar no padrão do whatsapp
     return Container(
       //height: 100,
