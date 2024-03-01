@@ -1,8 +1,8 @@
 import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
-class UpdateProfilePage extends StatelessWidget {
-  const UpdateProfilePage({super.key});
+class UserUpdateProfilePage extends StatelessWidget {
+  const UserUpdateProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +68,9 @@ class UpdateProfilePage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextField(
+                          const TextField(
                             textInputAction: TextInputAction.next,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: 'Antonio Andrade',
                               prefixIcon: Icon(
                                 Icons.person_rounded,
@@ -92,9 +92,9 @@ class UpdateProfilePage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextField(
+                          const TextField(
                             textInputAction: TextInputAction.next,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: 'example@gmail.com',
                               prefixIcon: Icon(
                                 Icons.alternate_email_rounded,
@@ -113,10 +113,10 @@ class UpdateProfilePage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextField(
+                          const TextField(
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: '+5582999999999',
                               prefixIcon: Icon(
                                 Icons.alternate_email_rounded,
