@@ -45,9 +45,11 @@ class ProfileController extends GetxController {
     try {
       final imageLink = await uploadFileToFirebase(imageUrl);
       final updatedUser = UserModel(
+        id: firebaseAuth.currentUser!.uid,
+        email: firebaseAuth.currentUser!.email,
         name: name,
         about: about,
-        profileImage: imageLink,
+        profileImage: imageLink ?? currentUser.value.profileImage,
         phoneNumber: number,
       );
       await cloudFirestore
@@ -58,6 +60,7 @@ class ProfileController extends GetxController {
           .set(
             updatedUser.toJson,
           );
+      getUserDetails();
     } catch (e, s) {
       log(
         e.toString(),
@@ -69,7 +72,7 @@ class ProfileController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<String> uploadFileToFirebase(String imagePath) async {
+  Future<String?> uploadFileToFirebase(String imagePath) async {
     final path = "files/$imagePath";
     final file = File(imagePath);
     if (imagePath != "") {
@@ -88,9 +91,9 @@ class ProfileController extends GetxController {
           stackTrace: s,
           time: DateTime.now(),
         );
-        return "";
+        return null;
       }
     }
-    return "";
+    return null;
   }
 }
