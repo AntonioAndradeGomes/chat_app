@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:chat_app/controllers/image_picker_controller.dart';
 import 'package:chat_app/controllers/profile_controller.dart';
 import 'package:chat_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -8,20 +11,26 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: variaveis para corrigir no controller
     RxBool isEdit = false.obs;
-    final profileController = Get.put(ProfileController());
-    final nameEC = TextEditingController(
+    ProfileController profileController = Get.put(ProfileController());
+    TextEditingController nameEC = TextEditingController(
       text: profileController.currentUser.value.name,
     );
-    final emailEC = TextEditingController(
+    TextEditingController emailEC = TextEditingController(
       text: profileController.currentUser.value.email,
     );
-    final phoneEC = TextEditingController(
+    TextEditingController phoneEC = TextEditingController(
       text: profileController.currentUser.value.phoneNumber,
     );
-    final aboutEC = TextEditingController(
+    TextEditingController aboutEC = TextEditingController(
       text: profileController.currentUser.value.about,
     );
+
+    ImagePickerController imagePickerController =
+        Get.put(ImagePickerController());
+
+    RxString imagePath = "".obs;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -47,12 +56,62 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Center(
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Theme.of(context).colorScheme.background,
-                      child: const Icon(
-                        Icons.image,
-                      ),
+                    child: Obx(
+                      () => isEdit.value
+                          ? InkWell(
+                              onTap: () async {
+                                imagePath.value =
+                                    await imagePickerController.pickImage();
+                              },
+                              child: Container(
+                                height: 140,
+                                width: 140,
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: imagePath.value == ""
+                                    ? const Icon(
+                                        Icons.add,
+                                      )
+                                    : ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: Image.file(
+                                          fit: BoxFit.cover,
+                                          File(
+                                            imagePath.value,
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                            )
+                          : Container(
+                              height: 140,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                                shape: BoxShape.circle,
+                              ),
+                              child: profileController
+                                              .currentUser.value.profileImage ==
+                                          null ||
+                                      profileController
+                                              .currentUser.value.profileImage ==
+                                          ""
+                                  ? const Icon(
+                                      Icons.image,
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: Image.network(
+                                        fit: BoxFit.cover,
+                                        profileController
+                                            .currentUser.value.profileImage!,
+                                      ),
+                                    ),
+                            ),
                     ),
                   ),
                   const SizedBox(
@@ -124,19 +183,27 @@ class ProfilePage extends StatelessWidget {
                     child: SizedBox(
                       width: 189,
                       child: Obx(
-                        () => PrimaryButton(
-                          btnName: isEdit.value ? "Save" : "Editar",
-                          icon: isEdit.value ? Icons.save : Icons.edit,
-                          onTap: isEdit.value
-                              ? () {
-                                  print("save");
-                                  isEdit.value = true;
-                                }
-                              : () {
-                                  print('edit');
-                                  isEdit.value = true;
-                                },
-                        ),
+                        () => profileController.isLoading.value
+                            ? const Center(
+                                child: CircularProgressIndicator.adaptive(),
+                              )
+                            : PrimaryButton(
+                                btnName: isEdit.value ? "Save" : "Editar",
+                                icon: isEdit.value ? Icons.save : Icons.edit,
+                                onTap: isEdit.value
+                                    ? () async {
+                                        await profileController.uploadProfile(
+                                          imagePath.value,
+                                          nameEC.text.trim(),
+                                          aboutEC.text.trim(),
+                                          phoneEC.text.trim(),
+                                        );
+                                        isEdit.value = false;
+                                      }
+                                    : () {
+                                        isEdit.value = true;
+                                      },
+                              ),
                       ),
                     ),
                   )

@@ -1,5 +1,6 @@
 import 'package:chat_app/config/assets_images.dart';
 import 'package:chat_app/config/routes/routes.dart';
+import 'package:chat_app/controllers/profile_controller.dart';
 import 'package:chat_app/pages/home/widgets/chat_list_widget.dart';
 import 'package:chat_app/pages/home/widgets/my_tab_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       length: 3,
       vsync: this,
     );
+
+    Get.put(ProfileController());
     return Scaffold(
         appBar: AppBar(
           title: Text(
