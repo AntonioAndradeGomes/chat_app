@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       vsync: this,
     );
 
-    Get.put(ProfileController());
+    final profileController = Get.put(ProfileController());
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -43,7 +43,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             IconButton(
-              onPressed: () {
+              onPressed: () async {
+                profileController.getUserDetails();
                 Get.toNamed(
                   Routes.profile,
                 );

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_app/controllers/auth_controller.dart';
 import 'package:chat_app/controllers/image_picker_controller.dart';
 import 'package:chat_app/controllers/profile_controller.dart';
 import 'package:chat_app/widgets/primary_button.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends StatelessWidget {
     //TODO: variaveis para corrigir no controller
     RxBool isEdit = false.obs;
     ProfileController profileController = Get.put(ProfileController());
+    final authController = Get.put(AuthController());
     TextEditingController nameEC = TextEditingController(
       text: profileController.currentUser.value.name,
     );
@@ -36,6 +38,16 @@ class ProfilePage extends StatelessWidget {
         title: const Text(
           'Perfil',
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              authController.logoutUser();
+            },
+            icon: const Icon(
+              Icons.logout,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
