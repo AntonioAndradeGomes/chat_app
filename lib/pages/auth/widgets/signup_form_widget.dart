@@ -15,7 +15,7 @@ class SignupFormWidget extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(
-          height: 40,
+          height: 36,
         ),
         TextField(
           controller: fullNameEC,
@@ -27,7 +27,7 @@ class SignupFormWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 36,
         ),
         TextField(
           controller: emailEC,
@@ -39,7 +39,7 @@ class SignupFormWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 36,
         ),
         TextField(
           controller: passwordEC,
@@ -52,7 +52,7 @@ class SignupFormWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 60,
+          height: 43,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -65,6 +65,7 @@ class SignupFormWidget extends StatelessWidget {
                         controller.createUser(
                           emailEC.text.trim(),
                           passwordEC.text,
+                          fullNameEC.text.trim(),
                         );
                       },
                       btnName: 'Cadastrar',

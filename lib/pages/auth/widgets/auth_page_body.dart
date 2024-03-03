@@ -1,111 +1,44 @@
 import 'package:chat_app/pages/auth/widgets/login_form_widget.dart';
+import 'package:chat_app/pages/auth/widgets/row_selection_page.dart';
 import 'package:chat_app/pages/auth/widgets/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//26:00
+enum AuthModule {
+  login('Entrar'),
+  create('Cadastrar');
+
+  final String label;
+  const AuthModule(this.label);
+}
+
 class AuthPageBody extends StatelessWidget {
   const AuthPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    RxBool isLogin = true.obs;
+    Rx<AuthModule> isLogin = AuthModule.login.obs;
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).colorScheme.primaryContainer,
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          isLogin.value = true;
-                        },
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 2.8,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Entrar',
-                                style: isLogin.value
-                                    ? Theme.of(context).textTheme.bodyLarge
-                                    : Theme.of(context).textTheme.labelLarge,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(
-                                  milliseconds: 200,
-                                ),
-                                width: isLogin.value ? 110 : 0,
-                                height: 3,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          isLogin.value = false;
-                        },
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 2.8,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Cadastrar',
-                                style: !isLogin.value
-                                    ? Theme.of(context).textTheme.bodyLarge
-                                    : Theme.of(context).textTheme.labelLarge,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(
-                                  milliseconds: 200,
-                                ),
-                                width: !isLogin.value ? 110 : 0,
-                                height: 3,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Obx(
-                  () => isLogin.value
-                      ? const LoginFormWidget()
-                      : const SignupFormWidget(),
-                ),
-              ],
+          Obx(
+            () => RowSelectionPage(
+              onButtonClick: (value) {
+                isLogin.value = value;
+              },
+              moduleSelected: isLogin.value,
             ),
-          )
+          ),
+          Obx(
+            () => isLogin.value == AuthModule.login
+                ? const LoginFormWidget()
+                : const SignupFormWidget(),
+          ),
         ],
       ),
     );

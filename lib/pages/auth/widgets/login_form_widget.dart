@@ -14,7 +14,7 @@ class LoginFormWidget extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(
-          height: 40,
+          height: 36,
         ),
         TextField(
           controller: emailEC,
@@ -26,7 +26,7 @@ class LoginFormWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 36,
         ),
         TextField(
           controller: passwordEC,
@@ -39,7 +39,7 @@ class LoginFormWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 60,
+          height: 43,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
