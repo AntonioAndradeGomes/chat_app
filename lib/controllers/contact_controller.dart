@@ -1,10 +1,11 @@
 import 'dart:developer';
+
 import 'package:chat_app/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class DbController extends GetxController {
+class ContactController extends GetxController {
   final firebaseAuth = FirebaseAuth.instance;
   final cloudFirestore = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;

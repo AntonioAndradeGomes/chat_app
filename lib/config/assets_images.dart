@@ -14,4 +14,7 @@ abstract class AssetsImages {
   static const gallery = '${iconsPath}gallery.svg';
   static const chatStatus = '${iconsPath}chatStatus.svg';
   static const videoSVG = '${iconsPath}video.svg';
+
+  static const defaultImage =
+      "https://firebasestorage.googleapis.com/v0/b/contato-chat.appspot.com/o/girl_pic.png?alt=media&token=a2af8722-b8b6-4bf9-8f2e-099c838e0939";
 }

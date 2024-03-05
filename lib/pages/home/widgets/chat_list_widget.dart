@@ -13,18 +13,16 @@ class ChatListWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       itemCount: 2,
       itemBuilder: (_, index) {
-        return InkWell(
+        return ChatTileWidget(
           onTap: () {
             Get.toNamed(
               Routes.chat,
             );
           },
-          child: ChatTileWidget(
-            imageUrl: AssetsImages.girlPic,
-            lastChat: 'Quero te bater!',
-            lastTime: '09:10 PM',
-            name: 'Ellen Camille $index',
-          ),
+          imageUrl: AssetsImages.defaultImage,
+          lastChat: 'Quero te bater!',
+          lastTime: '09:10 PM',
+          name: 'Ellen Camille $index',
         );
       },
       separatorBuilder: (_, index) {

@@ -1,4 +1,5 @@
 import 'package:chat_app/config/assets_images.dart';
+import 'package:chat_app/controllers/contact_controller.dart';
 import 'package:chat_app/pages/contact/widgets/contact_search.dart';
 import 'package:chat_app/pages/contact/widgets/new_contact_tile.dart';
 import 'package:chat_app/pages/home/widgets/chat_tile_widget.dart';
@@ -11,6 +12,7 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSearchEnable = false.obs;
+    final contactController = Get.put(ContactController());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,23 +56,40 @@ class ContactPage extends StatelessWidget {
             ),
             child: Text("Contatos no Contato Chat"),
           ),
-          Column(
-            children: List.generate(
-                10,
-                (index) => Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 10,
-                      ),
-                      child: InkWell(
-                        onTap: () {},
-                        child: ChatTileWidget(
-                          imageUrl: AssetsImages.girlPic,
-                          lastChat: 'Quero te bater!',
-                          lastTime: '09:10 PM',
-                          name: 'Ellen Camille $index',
-                        ),
-                      ),
-                    )),
+          Obx(
+            () => contactController.isLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  )
+                : Column(
+                    /*  children: List.generate(
+                        10,
+                        (index) => Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 10,
+                              ),
+                              child: InkWell(
+                                onTap: () {},
+                                child: ChatTileWidget(
+                                  imageUrl: AssetsImages.girlPic,
+                                  lastChat: 'Quero te bater!',
+                                  lastTime: '09:10 PM',
+                                  name: 'Ellen Camille ',
+                                ),
+                              ),
+                            )),*/
+                    children: contactController.userList
+                        .map(
+                          (element) => ChatTileWidget(
+                            onTap: () {},
+                            imageUrl: element.profileImage ??
+                                AssetsImages.defaultImage,
+                            name: element.name!,
+                            lastChat: element.about ?? "Hey!",
+                            lastTime: "",
+                          ),
+                        )
+                        .toList()),
           ),
         ],
       ),
